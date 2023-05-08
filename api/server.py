@@ -1,10 +1,12 @@
 import os
 from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
 import google.generativeai as palm
 
 palm.configure(api_key=os.environ['PALM_API_KEY'])
 
 app = Flask(__name__)
+cors = CORS(app)
 
 @app.route('/')
 def index():

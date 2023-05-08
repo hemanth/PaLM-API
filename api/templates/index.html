@@ -1,14 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PaLM API Server</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Include Prism.js CSS for syntax highlighting -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css" inputmode="normal">     
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/base.min.css" inputmode="normal">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/components.min.css" inputmode="normal">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/utilities.min.css" inputmode="normal"> 
+  
+  <title>PaLM API Server</title>
+
 </head>
 <body>
-    <p>
-        Post your data to `/chat` to get a chat response from PaLM.
-    </p>
+    <section>   
+        <div class="flex flex-col items-center justify-center  min-h-fit m-8 py-2">
+            <div class="flex flex-col items-center justify-center w-full flex-1 px-20 text-center m-8 ">
+                <h1 class="text-6xl font-bold">
+                    PaLM API Server
+                </h1>
+                <p class="mt-3 text-2xl">
+                    Post your data to `/chat` to get a chat response from PaLM.
+                </p>
+            </div>
+            <section>
+                <pre><code class="language-javascript">
+fetch('/chat', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        "message": "Hello, I am a message"
+    }),
+})
+.then(response => response.json())
+.then(data => {
+    console.log('Success:', data);
+})
+.catch((error) => {
+    console.error('Error:', error);
+});
+                  </code></pre>
+            </section>
+    </section>  
+   
+  <!-- Include Prism.js JavaScript for syntax highlighting -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
 </body>
 </html>

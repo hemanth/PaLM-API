@@ -20,7 +20,13 @@ def chat():
 
     response = palm.chat(messages=input_msg)
     
-    return jsonify({'response': response.last})
+    if not response.last:
+        response = palm.generate_text(prompt=input_msg, **defaults)
+        if not response.result:
+            return jsonify({'response': 'Sorry I am still learning...'})
+        return jsonify({'response': response.result})
+    else:
+        return jsonify({'response': response.last})
 
 if __name__ == '__main__':
     app.run()

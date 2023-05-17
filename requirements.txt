@@ -1,4 +1,4 @@
-Flask==2.3.2
+Flask==2.2.3
 flask-cors==3.0.10
 google-ai-generativelanguage==0.1.0
 google-api-core==2.11.0

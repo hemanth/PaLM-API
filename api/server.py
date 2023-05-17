@@ -8,6 +8,15 @@ palm.configure(api_key=os.environ['PALM_API_KEY'])
 app = Flask(__name__)
 cors = CORS(app)
 
+defaults = {
+  'model': 'models/text-bison-001',
+  'temperature': 0.4,
+  'candidate_count': 1,
+  'top_k': 40,
+  'top_p': 0.95,
+  'max_output_tokens': 1024,
+}
+
 @app.route('/')
 def index():
     return render_template('index.html')

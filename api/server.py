@@ -23,22 +23,23 @@ defaults = {
 @app.route('/')
 def index():
     return render_template('index.html')
-
+  
 @app.route('/chat', methods=['POST'])
 def chat():
-    input_msg = request.json['message']
-    if not input_msg:
-        return jsonify({'error': 'Empty message'})
-
-    response = palm.chat(messages=input_msg)
-    
-    if not response.last:
-        response = palm.generate_text(prompt=input_msg, **defaults)
-        if not response.result:
-            return jsonify({'response': 'Sorry I am still learning...'})
-        return jsonify({'response': response.result})
-    else:
-        return jsonify({'response': response.last})
+    try:
+        input_msg = request.json['message']
+        if not input_msg:
+            return jsonify({'error': 'Empty message'})
+        response = palm.chat(messages=input_msg)
+        if not response.last:
+            response = palm.generate_text(prompt=input_msg, **defaults)
+            if not response.result:
+                return jsonify({'response': 'Sorry, I am still learning...'})
+            return jsonify({'response': response.result})
+        else:
+            return jsonify({'response': response.last})
+    except Exception as e:
+        return jsonify({'response': str(e)})
 
 if __name__ == '__main__':
     app.run()

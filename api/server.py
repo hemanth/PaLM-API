@@ -8,9 +8,12 @@ palm.configure(api_key=os.environ['PALM_API_KEY'])
 app = Flask(__name__)
 cors = CORS(app)
 
+
+# Model(name='models/text-bison-001', base_model_id='', version='001', display_name='Text Bison', description='Model targeted for text generation.', input_token_limit=4000, output_token_limit=1024, supported_generation_methods=['generateText'], temperature=0.7, top_p=0.95, top_k=40)
+
 defaults = {
   'model': 'models/text-bison-001',
-  'temperature': 0.4,
+  'temperature': 0.7,
   'candidate_count': 1,
   'top_k': 40,
   'top_p': 0.95,

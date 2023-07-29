@@ -2,6 +2,9 @@ import os
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import google.generativeai as palm
+import prompts
+import traceback
+import logging
 
 palm.configure(api_key=os.environ['PALM_API_KEY'])
 
@@ -19,16 +22,16 @@ defaults = {
   'max_output_tokens': 1024,
 }
 
-
 @app.route('/')
 def index():
   return render_template('index.html')
 
-
 @app.route('/chat', methods=['POST'])
 def chat():
   try:
+    prompt_type = request.json['type']
     input_msg = request.json['message']
+    input_msg = prompts.__dict__.get(prompt_type.upper()).format(place_holder=input_msg)
     if not input_msg:
       return jsonify({'error': 'Empty message'})
     try:
@@ -46,8 +49,11 @@ def chat():
         return jsonify(
           {'response': f"Sorry, I am still learning...{str(exception)}"})
   except Exception as e:
+    print("here", e)
+    print(e)
     return jsonify({'error': str(e)})
 
 
 if __name__ == '__main__':
+  app.config['REQUEST_TIMEOUT'] = 300
   app.run()

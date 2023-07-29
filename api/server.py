@@ -2,7 +2,7 @@ import os
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import google.generativeai as palm
-# import prompts # until we find a way to resolve modules on vercel
+import prompts # until we find a way to resolve modules on vercel
 import traceback
 import logging
 

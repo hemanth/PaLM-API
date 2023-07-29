@@ -55,12 +55,13 @@ Provide guidance on what should be done instead:
 Instead of saying "do not include spoilers," say "please summarize the book without giving away any spoilers."
 Instead of saying "do not use your own opinions," say "please provide a neutral summary of the book.
 """ "",
-
-"ROOT_WORD": """Give me the root word of the Sanskrit word {place_holder}, give multiple meanings, and break it into syllables.
+  "ROOT_WORD": """Give me the root word of the Sanskrit word {place_holder}, give multiple meanings, and break it into syllables.
 
 This prompt can be used for any Sanskrit word. The word {place_holder} should be replaced with the Sanskrit word that you want to learn about. The prompt will then give you the root word of the Sanskrit word, multiple meanings, and break it into syllables.
 
-For example, if you wanted to learn about the Sanskrit word पुरूरवस्, you would replace {place_holder} with पुरूरवस्. The prompt would then give you the root word पुरु, multiple meanings for पुरु, and break down पुरूरवस् into syllables."""
+For example, if you wanted to learn about the Sanskrit word पुरूरवस्, you would replace {place_holder} with पुरूरवस्. The prompt would then give you the root word पुरु, multiple meanings for पुरु, and break down पुरूरवस् into syllables.""", 
+  
+  "STRENGTHS": """Given Strengths & MBriggs provide me prompt that would guide the person to get better! Provide Pros, Cons and Thinks to improve. Keep it bullet points. For: {place_holder}"""
 }
 
 @app.route('/')

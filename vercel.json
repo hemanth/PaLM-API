@@ -2,6 +2,9 @@
     "builds": [
         {
             "src": "api/server.py",
+             "config": {
+                 "includeFiles": ["api/prompts.py"]
+             }
             "use": "@vercel/python"
         }
     ],

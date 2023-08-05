@@ -74,7 +74,8 @@ def chat():
     prompt_type = request.json['type']
     input_msg = request.json['message']
     # input_msg = prompts.__dict__.get(prompt_type.upper()).format(place_holder=input_msg)
-    input_msg = prompts.get(prompt_type.upper()).format(place_holder=input_msg)
+    if prompt_type:
+      input_msg = prompts.get(prompt_type.upper()).format(place_holder=input_msg)
     if not input_msg:
       return jsonify({'error': 'Empty message'})
     try:
